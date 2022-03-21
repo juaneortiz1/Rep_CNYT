@@ -143,3 +143,38 @@ def prod_ten (m1,m2):
             for k in range(fin2):
                 m1[i][j] = m1[i][j] * m2[k]
     return(m1)
+def productVectorReal(vec1,vec2):
+    res = 0
+    for i in range(len(vec1)):
+        temp = vec1[i]*vec2[i]
+        res += temp
+    return res
+def productRealMatrix(a,b):
+    if len(a) != len(b[0]):
+        print ("LAS MATRICES NO SON COMPLATIBLES PARA MULTIPLICAR")
+        return -1
+    else:
+        result = [[None] * len(b[0]) for i in range(len(a))]
+        for i in range(len(a)):
+            for j in range(len(b[0])):
+                col = [row[j] for row in b]
+                result[i][j] = productVectorReal(a[i],col)
+        return result
+def matrixOnVectorReal(matrix,vector):
+    result = []
+    for i in range(len(matrix)):
+        result.append(productVectorReal(vector,matrix[i]))
+    return result
+def matrixOnVector(matrix,vector):
+    result = []
+    for i in range(len(matrix)):
+        result.append(productVector(vector,matrix[i]))
+    return result
+def productVector(vec1,vec2):
+    res = (0+0j)
+    for i in range(len(vec1)):
+        temp = product(vec1[i],vec2[i])
+        res = sum(res,temp)
+    return res
+def product(a,b):
+    return a*b
